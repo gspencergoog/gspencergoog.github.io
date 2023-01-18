@@ -99,17 +99,20 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: AnimatedContainer(
-        duration: const Duration(milliseconds: 400),
+        duration: const Duration(milliseconds: 200),
         alignment: Alignment.center,
         margin: const EdgeInsets.all(20),
         decoration: ShapeDecoration(
-          color: Theme.of(context).highlightColor,
+          color: Theme.of(context).colorScheme.secondaryContainer,
           shape: StarBorder(
-              side: const BorderSide(),
-              points: _counter.toDouble(),
-              pointRounding: 0.3,
-              valleyRounding: 0.3,
-              innerRadiusRatio: .5),
+            side: const BorderSide(),
+            points: _counter.toDouble(),
+            // TRY THIS: Try changing the parameters here. When you save them,
+            // the border will animate to the new values automatically.
+            pointRounding: 0.4,
+            valleyRounding: 0.4,
+            innerRadiusRatio: .5,
+          ),
         ),
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -134,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
               // one widget is switched out for another. By default, it performs
               // a fade animation, but the type and duration of the animation
               // can be customized.
-              duration: const Duration(milliseconds: 400),
+              duration: const Duration(milliseconds: 200),
               child: Text(
                 // In order for the AnimatedSwitcher to know when the counter
                 // value changes so it can animate the transition, it is
