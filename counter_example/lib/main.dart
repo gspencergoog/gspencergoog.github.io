@@ -60,14 +60,14 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 3;
 
-  void _incrementCounter() {
+  void _incrementCounterBy(int amount) {
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to run the build method below
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and nothing would appear to happen.
-      _counter += 1;
+      _counter += amount;
     });
   }
 
@@ -87,12 +87,11 @@ class _MyHomePageState extends State<MyHomePage> {
         // color from the scheme instead, to have some contrast.
         //
         // Using Theme.of(context) means that this build function will
-        // automatically be called again to rebuild if the theme and it's
-        // colorScheme changes.
+        // automatically be called again to rebuild if the theme changes.
         //
         // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and press trigger a hot reload to see the
-        // AppBar change color while the other colors stay the same.
+        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
+        // change color while the other colors stay the same.
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         // This takes the value from the MyHomePage object that was created by
         // the App.build method, and uses it to set the AppBar title.
@@ -132,31 +131,31 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            AnimatedSwitcher(
-              // AnimatedSwitcher is a widget that performs an animation when
-              // one widget is switched out for another. By default, it performs
-              // a fade animation, but the type and duration of the animation
-              // can be customized.
-              duration: const Duration(milliseconds: 200),
-              child: Text(
-                // In order for the AnimatedSwitcher to know when the counter
-                // value changes so it can animate the transition, it is
-                // assigned a ValueKey that changes when the counter does, so
-                // that Flutter considers this widget to be a different widget
-                // each time the counter changes.
-                key: ValueKey<int>(_counter),
-                '$_counter',
-                style: Theme.of(context).textTheme.displayMedium,
-                textAlign: TextAlign.center,
-              ),
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.displayMedium,
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Padding(
+            padding: const EdgeInsetsDirectional.only(end: 8.0),
+            child: FloatingActionButton(
+              onPressed: _counter > 3 ? () => _incrementCounterBy(-1) : null,
+              tooltip: 'Decrement',
+              disabledElevation: 0,
+              child: const Icon(Icons.remove),
+            ),
+          ),
+          FloatingActionButton(
+            onPressed: () => _incrementCounterBy(1),
+            tooltip: 'Increment',
+            child: const Icon(Icons.add),
+          ),
+        ],
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
