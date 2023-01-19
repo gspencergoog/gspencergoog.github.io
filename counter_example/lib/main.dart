@@ -5,9 +5,11 @@ void main() {
 }
 
 // This is a stateless widget that forms the main widget for the application. It
-// is said to be stateless because its attributes are fixed at creation, so it
+// is said to be "stateless" because its attributes are fixed at creation, so it
 // can't keep any modified application state itself, the state it uses all comes
-// from its inputs. The power of stateless widgets is that they are immutable, but can still 
+// from its inputs. The power of stateless widgets is that although they are
+// lightweight and immutable, they can have logic in their build methods to
+// modify what gets built based on their configuration.
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -24,8 +26,7 @@ class MyApp extends StatelessWidget {
         // changing the colorScheme below to use a seedColor of Colors.green and
         // then invoke "hot reload" (press "r" in the console where you ran
         // "flutter run", save your changes to "hot reload" in a Flutter IDE, or
-        // press the "hot reload" button in a Flutter IDE, denoted by a
-        // lightning bolt ⚡).
+        // press the "hot reload" button in a Flutter IDE).
         //
         // Notice that the counter didn't reset back to zero; the application
         // state is not lost during the reload. This is what is meant by
@@ -50,17 +51,18 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
-  // This widget is the home page of your application. It is stateful, meaning
+  // This widget is the "home page" of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
   // how it looks and behaves.
   //
-  // Widgets are the configuration for the State object. This class holds the
-  // values (in this case the title) provided by the parent (in this case the
-  // App widget) and used by the build method of the State. Fields in a Widget
-  // subclass are always marked "final" because Widget subclasses are meant to
-  // be lightweight configuration objects that are rebuilt with new values
-  // rather than modified. Modifiable state belongs in the associated State
-  // object.
+  // Widgets are the configuration object for their State objects. This object
+  // holds the values, in this case the title, provided by the parent, in this
+  // case the MyApp widget, that are used by the build method of the State.
+  //
+  // Fields in a Widget subclass are always marked "final" because Widget
+  // subclasses are meant to be lightweight configuration objects that are
+  // rebuilt with new values rather than modified. Modifiable state belongs in
+  // the associated State object.
 
   final String title;
 
@@ -87,15 +89,15 @@ class _MyHomePageState extends State<MyHomePage> {
     // This method is run every time setState is called as, for example, the
     // _incrementCounter method does above.
     //
-    // The Flutter framework has been optimized to make running build methods
-    // fast, so that you can rebuild anything that needs updating rather than
+    // The Flutter framework has been optimized to make build methods run
+    // quickly, so that you can rebuild anything that needs updating rather than
     // having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
         // The default background color is the primary color of the ColorScheme
         // set on the Theme, which in this case happens to be the same white as
-        // the default Scaffold background color, so this sets it to use another
-        // color from the scheme instead, to have some contrast.
+        // the default Scaffold background color, so this sets the AppBar to use
+        // another color from the scheme instead, to have some contrast.
         //
         // Using Theme.of(context) means that this build function will
         // automatically be called again to rebuild if the theme changes.
