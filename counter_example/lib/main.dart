@@ -4,6 +4,10 @@ void main() {
   runApp(const MyApp());
 }
 
+// This is a stateless widget that forms the main widget for the application. It
+// is said to be stateless because its attributes are fixed at creation, so it
+// can't keep any modified application state itself, the state it uses all comes
+// from its inputs. The power of stateless widgets is that they are immutable, but can still 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -12,7 +16,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        useMaterial3: true,
         // This is the theme of your application.
         //
         // TRY THIS: Try running your application with "flutter run" on the
@@ -31,6 +34,13 @@ class MyApp extends StatelessWidget {
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        // This makes the theme conform to a more up-to-date version of the
+        // Material Design specification. Soon, this will be the default, and
+        // this flag won't be necessary.
+        //
+        // See https://m3.material.io/ for more information about Material
+        // Design.
+        useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Counter Example'),
     );
@@ -43,13 +53,14 @@ class MyHomePage extends StatefulWidget {
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
   // how it looks and behaves.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final" because Widget subclasses are meant to be lightweight
-  // configuration objects that are rebuilt with new values rather than
-  // modified. Modifiable state belongs in the associated State object.
+  //
+  // Widgets are the configuration for the State object. This class holds the
+  // values (in this case the title) provided by the parent (in this case the
+  // App widget) and used by the build method of the State. Fields in a Widget
+  // subclass are always marked "final" because Widget subclasses are meant to
+  // be lightweight configuration objects that are rebuilt with new values
+  // rather than modified. Modifiable state belongs in the associated State
+  // object.
 
   final String title;
 
@@ -73,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // This method is run every time setState is called, for instance as the
+    // This method is run every time setState is called as, for example, the
     // _incrementCounter method does above.
     //
     // The Flutter framework has been optimized to make running build methods
@@ -97,6 +108,9 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and uses it to set the AppBar title.
         title: Text(widget.title),
       ),
+      // AnimatedContainer is similar to a Container widget, in that it defines
+      // a region that has some display attributes and a child, but it also
+      // animates any changes to its parameters.
       body: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         alignment: Alignment.center,
@@ -106,23 +120,22 @@ class _MyHomePageState extends State<MyHomePage> {
           shape: StarBorder(
             side: const BorderSide(),
             points: _counter.toDouble(),
-            // TRY THIS: Try changing the parameters here. When you save them,
-            // the border will animate to the new values automatically.
+            // TRY THIS: Try changing the parameters here. When you hot reload
+            // them, the border will animate to the new values automatically,
+            // over the duration set in the AnimatedContainer, above.
             pointRounding: 0.4,
             valleyRounding: 0.4,
             innerRadiusRatio: .5,
           ),
         ),
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
         child: Column(
           // Column is also a layout widget. It takes a list of children and
           // arranges them vertically. By default, it sizes itself to fit its
           // children horizontally, and tries to be as tall as its parent.
           //
-          // Invoke "debug painting" (press "p" in the console, or choose the
-          // "Toggle Debug Paint" action in the IDE), to see the wireframe for
-          // each widget.
+          // TRY THIS: Invoke "debug painting" (press "p" in the console, or
+          // choose the "Toggle Debug Paint" action in the IDE), to see the
+          // wireframe for each widget.
           //
           // Column has various properties to control how it sizes itself and
           // how it positions its children. Here we use mainAxisAlignment to
